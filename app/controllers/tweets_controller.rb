@@ -2,14 +2,14 @@ class TweetsController < ApplicationController
   before_action :move_to_index,except: :index
 
   def index
-    @tweets = Tweet.page(params[:page]).per(5).all.order('created_at desc')
+    @tweets = Tweet.includes(:user).page(params[:page]).per(5).all.order('created_at desc')
   end
 
   def new
   end
 
   def create
-    Tweet.create(name:tweet_params[:name],text:tweet_params[:text],image:tweet_params[:image],user_id:current_user.id)
+    Tweet.create(text:tweet_params[:text],image:tweet_params[:image],user_id:current_user.id)
     binding.pry
   end
 
@@ -19,7 +19,7 @@ class TweetsController < ApplicationController
 
   private
   def tweet_params
-    params.permit(:name,:image,:text)
+    params.permit(:image,:text)
   end
 
 
