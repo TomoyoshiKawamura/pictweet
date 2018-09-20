@@ -1,7 +1,7 @@
 class TweetsController < ApplicationController
 
   def index
-    @tweets = Tweet.all.order('created_at desc')
+    @tweets = Tweet.page(params[:page]).per(5).all.order('created_at desc')
   end
 
   def new
