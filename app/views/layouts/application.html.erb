@@ -27,8 +27,17 @@
       <h1 class="grid-6"><a href="/">PicTweet</a></h1>
       <% if user_signed_in? %>
         <div class="user_nav grid-6">
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <%= link_to '新規投稿', tweets_new_path,class:'post',method: :get%>
+          <span><%= current_user.nickname %>
+            <ul class="user__info">
+              <li>
+                <a href='/users/<%= current_user.id %>'>マイページ</a>
+              </li>
+              <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              </li>
+            </ul>
+          </span>
+              <%= link_to '新規投稿', new_tweet_path,class:'post',method: :get%>
         </div>
       <% else %>
         <div class="grid-6">
