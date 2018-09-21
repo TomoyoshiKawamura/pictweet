@@ -8,6 +8,9 @@
         <li>
           <%= link_to '削除',"/tweets/#{tweet.id}",method: :delete %>
         </li>
+        <li>
+          <%= link_to '編集',"/tweets/#{tweet.id}/edit",method: :get %>
+        </li>
       </ul>
     </div>
     <% end %>
